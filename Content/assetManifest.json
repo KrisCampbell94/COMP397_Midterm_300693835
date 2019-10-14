@@ -1,0 +1,6 @@
+{
+    "assetManifest":[
+        {"id": "player", "src": ""},
+        {"id":"block","src":""}
+    ]
+}
