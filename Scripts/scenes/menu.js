@@ -15,7 +15,6 @@ var scenes;
 (function (scenes) {
     var MenuScene = /** @class */ (function (_super) {
         __extends(MenuScene, _super);
-        // Variables
         // Constructor
         function MenuScene(assetManager) {
             var _this = _super.call(this, assetManager) || this;
@@ -23,9 +22,14 @@ var scenes;
             return _this;
         }
         // Methods
-        MenuScene.prototype.Start = function () { };
+        MenuScene.prototype.Start = function () {
+            this.background = new objects.Background(this.assetManager);
+            this.Main();
+        };
         MenuScene.prototype.Update = function () { };
-        MenuScene.prototype.Main = function () { };
+        MenuScene.prototype.Main = function () {
+            this.addChild(this.background);
+        };
         return MenuScene;
     }(objects.Scene));
     scenes.MenuScene = MenuScene;

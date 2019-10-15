@@ -1,3 +1,4 @@
+import {assetManifest} from "../../Content/assetManifest.json";
 // Immediate Invoked Anonymous Function
 (function () {
     // Global Game Variables
@@ -6,25 +7,26 @@
     let currentScene: objects.Scene;
     let currentState: number;
     let assetManager: createjs.LoadQueue;
-    let assetManifest: any; // Any values can be in this array.
+    //let assetManifest: any; // Any values can be in this array.
 
     // Asset Management
-    let request = new XMLHttpRequest();
-    request.open("GET","./Content/assetManifest.json",false);
-    request.send(null);
-    assetManifest = [JSON.parse(request.responseText)];
+    //let request = new XMLHttpRequest();
+    //request.open("GET","./Content/assetManifest.json",false);
+    //request.send();
 
     // InIt
     function Init() {
+        console.log("Initialization Start.");
         // Building the assetManager
         assetManager = new createjs.LoadQueue();
         assetManager.installPlugin(createjs.Sound);
-        assetManager.loadManifest(assetManifest.assetManifest);
+        assetManager.loadManifest(assetManifest);
         // Goto Start Function
         assetManager.on("complete", Start, this);
     }
     // Start
     function Start() {
+        console.log("Starting Application.");
         // Initialize CreateJS
         stage = new createjs.Stage(canvas);
         // Frequency of checks
@@ -51,10 +53,11 @@
 
     // Main: Where the Finite State Machine is established
     function Main() {
+        console.log("Game Start.");
         switch (objects.Game.currentScene) {
             case config.Scene.MENU:
                 stage.removeAllChildren();
-                //currentScene = new scene.'SceneHere'(assetManager);
+                currentScene = new scenes.MenuScene(assetManager);
                 //stage.addChild(currentScene)
                 break;
             case config.Scene.GAME:
