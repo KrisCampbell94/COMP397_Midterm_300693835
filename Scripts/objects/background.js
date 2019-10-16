@@ -23,7 +23,9 @@ var objects;
             return _this;
         }
         // Methods
-        Background.prototype.Start = function () { };
+        Background.prototype.Start = function () {
+            console.log("Load Background");
+        };
         Background.prototype.Update = function () { };
         Background.prototype.Main = function () { };
         return Background;

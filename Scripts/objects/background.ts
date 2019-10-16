@@ -7,7 +7,9 @@ module objects{
             this.Start();
         }
         // Methods
-        public Start(): void { }
+        public Start(): void {
+            console.log("Load Background");
+         }
         public Update(): void { }
         public Main(): void { }
     }

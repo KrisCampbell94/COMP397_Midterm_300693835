@@ -1,26 +1,30 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-var assetManifest_json_1 = require("../../Content/assetManifest.json");
 // Immediate Invoked Anonymous Function
 (function () {
     // Global Game Variables
     var canvas = document.getElementById("canvas");
     var stage;
+    var assetManager;
+    var assetManifest;
     var currentScene;
     var currentState;
-    var assetManager;
-    //let assetManifest: any; // Any values can be in this array.
-    // Asset Management
-    //let request = new XMLHttpRequest();
-    //request.open("GET","./Content/assetManifest.json",false);
-    //request.send();
+    var keyboardManager;
+    // Asset Management Request
+    var request = new Request("./Content/assetManifest.json");
+    fetch(request)
+        .then(function (response) {
+        return response.json();
+    })
+        .then(function (data) {
+        console.log(data);
+        assetManifest = data;
+    });
     // InIt
     function Init() {
         console.log("Initialization Start.");
         // Building the assetManager
         assetManager = new createjs.LoadQueue();
         assetManager.installPlugin(createjs.Sound);
-        assetManager.loadManifest(assetManifest_json_1.assetManifest);
+        assetManager.loadManifest(assetManifest);
         // Goto Start Function
         assetManager.on("complete", Start, this);
     }
@@ -36,7 +40,11 @@ var assetManifest_json_1 = require("../../Content/assetManifest.json");
         createjs.Ticker.on("tick", Update);
         // Global references
         objects.Game.stage = stage;
-        objects.Game.currentScene = currentState = config.Scene.MENU;
+        objects.Game.currentScene = config.Scene.MENU;
+        currentState = config.Scene.MENU;
+        // Keyboard Manager
+        keyboardManager = new managers.Keyboard;
+        objects.Game.keyboardManager = keyboardManager;
         Main();
     }
     // Update: Updates the scene, and state
@@ -54,7 +62,7 @@ var assetManifest_json_1 = require("../../Content/assetManifest.json");
             case config.Scene.MENU:
                 stage.removeAllChildren();
                 currentScene = new scenes.MenuScene(assetManager);
-                //stage.addChild(currentScene)
+                stage.addChild(currentScene);
                 break;
             case config.Scene.GAME:
                 stage.removeAllChildren();

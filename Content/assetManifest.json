@@ -1,9 +1,22 @@
-{
-    "assetManifest" : [
-        {"id": "bat", "src": "./Assets/Images/Bat.png"},
-        {"id": "regularFloor", "src": "./Assets/Images/RegularFloor.png"},
-        {"id": "spike", "src": "./Assets/Images/Spike.png"},
-        {"id": "background", "src": "./Assets/Images/Background.png"},
-        {"id":"block","src":"./Assets/Images/Block.png"}
-    ]
-}
+[
+    {
+        "id": "bat",
+        "src": "./Assets/Images/Bat.png"
+    },
+    {
+        "id": "regularFloor",
+        "src": "./Assets/Images/RegularFloor.png"
+    },
+    {
+        "id": "spike",
+        "src": "./Assets/Images/Spike.png"
+    },
+    {
+        "id": "background",
+        "src": "./Assets/Images/Background.png"
+    },
+    {
+        "id": "block",
+        "src": "./Assets/Images/Block.png"
+    }
+]

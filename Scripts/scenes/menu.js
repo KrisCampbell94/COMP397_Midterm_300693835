@@ -23,12 +23,16 @@ var scenes;
         }
         // Methods
         MenuScene.prototype.Start = function () {
+            console.log("Load Menu Scene");
             this.background = new objects.Background(this.assetManager);
+            this.title = new objects.Label("THE BAT CAVE", "32px", "'Press Start 2P'", "#FFFF00", 320, 200, true);
+            this.title.createShadow("#6000B0");
             this.Main();
         };
         MenuScene.prototype.Update = function () { };
         MenuScene.prototype.Main = function () {
             this.addChild(this.background);
+            this.addChild(this.title);
         };
         return MenuScene;
     }(objects.Scene));
