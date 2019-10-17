@@ -7,11 +7,12 @@ module objects{
             text: string, fontSize: string, fontFamily: string, fontColor: string, x: number = 0, y: number = 0, isCentered: boolean = false
         ) {
             super(text,fontSize+ " "+fontFamily,fontColor);
+            this.x = x;
+            this.y = y;
             if(isCentered){
                 this.recenterText();
             }
-            this.x = x;
-            this.y = y;
+            
         }
         // Methods
         public recenterText(): void {

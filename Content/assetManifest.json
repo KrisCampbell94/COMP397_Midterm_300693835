@@ -18,5 +18,13 @@
     {
         "id": "block",
         "src": "./Assets/Images/Block.png"
+    },
+    {
+        "id":"buttonPlay",
+        "src":"./Assets/Images/Button_Play.png"
+    },
+    {
+        "id":"buttonMenu",
+        "src":"./Assets/Images/Button_Menu.png"
     }
 ]

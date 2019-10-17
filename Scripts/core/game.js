@@ -66,13 +66,13 @@
                 break;
             case config.Scene.GAME:
                 stage.removeAllChildren();
-                //currentScene = new scene.'SceneHere'(assetManager);
-                //stage.addChild(currentScene)
+                currentScene = new scenes.GameScene(assetManager);
+                stage.addChild(currentScene);
                 break;
             case config.Scene.GAMEOVER:
                 stage.removeAllChildren();
-                //currentScene = new scene.'SceneHere'(assetManager);
-                //stage.addChild(currentScene)
+                currentScene = new scenes.GameOverScene(assetManager);
+                stage.addChild(currentScene);
                 break;
         }
         currentState = objects.Game.currentScene;

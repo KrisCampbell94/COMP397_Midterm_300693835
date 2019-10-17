@@ -22,11 +22,11 @@ var objects;
             if (y === void 0) { y = 0; }
             if (isCentered === void 0) { isCentered = false; }
             var _this = _super.call(this, text, fontSize + " " + fontFamily, fontColor) || this;
+            _this.x = x;
+            _this.y = y;
             if (isCentered) {
                 _this.recenterText();
             }
-            _this.x = x;
-            _this.y = y;
             return _this;
         }
         // Methods
