@@ -13,18 +13,22 @@ var managers;
             switch (event.keyCode) {
                 case config.Keys.W:
                 case config.Keys.UP_ARROW:
+                    //console.log("Up pressed");
                     this.moveUp = true;
                     break;
                 case config.Keys.A:
                 case config.Keys.LEFT_ARROW:
+                    //console.log("Left pressed");
                     this.moveLeft = true;
                     break;
                 case config.Keys.S:
                 case config.Keys.DOWN_ARROW:
+                    //console.log("Down pressed");
                     this.moveDown = true;
                     break;
                 case config.Keys.D:
                 case config.Keys.RIGHT_ARROW:
+                    //console.log("Right pressed");
                     this.moveRight = true;
                     break;
             }

@@ -1,5 +1,5 @@
-module objects{
-    export class Scene extends createjs.Container{
+module objects {
+    export class Scene extends createjs.Container {
         // Variables
         public assetManager: createjs.LoadQueue;
         // Constructor

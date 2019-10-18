@@ -25,10 +25,15 @@ var scenes;
         GameScene.prototype.Start = function () {
             console.log("Load Game Scene");
             this.background = new objects.Background(this.assetManager);
+            this.player = new objects.Player(this.assetManager, [100, 100], [640, 440]);
+            this.Main();
         };
-        GameScene.prototype.Update = function () { };
+        GameScene.prototype.Update = function () {
+            this.player.Update();
+        };
         GameScene.prototype.Main = function () {
             this.addChild(this.background);
+            this.addChild(this.player);
         };
         return GameScene;
     }(objects.Scene));

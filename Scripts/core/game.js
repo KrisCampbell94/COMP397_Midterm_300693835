@@ -10,14 +10,56 @@
     var keyboardManager;
     // Asset Management Request
     var request = new Request("./Content/assetManifest.json");
-    fetch(request)
-        .then(function (response) {
-        return response.json();
+    fetch(request, {
+        method: 'GET',
+        headers: { 'Content-type': "application/json" },
+        mode: 'cors',
+        cache: 'default'
+    }).then(function (response) {
+        if (response.status === 200) {
+            return response.json();
+        }
+        else {
+            throw new Error('Error on the server.');
+        }
     })
         .then(function (data) {
-        console.log(data);
         assetManifest = data;
+        console.log(assetManifest);
+    }).catch(function (error) {
+        console.error(error);
     });
+    //assetManifest = [
+    //    {
+    //        "id": "bat",
+    //        "src": "./Assets/Images/Bat.png"
+    //    },
+    //    {
+    //        "id": "regularFloor",
+    //        "src": "./Assets/Images/RegularFloor.png"
+    //    },
+    //    {
+    //        "id": "spike",
+    //        "src": "./Assets/Images/Spike.png"
+    //    },
+    //    {
+    //        "id": "background",
+    //        "src": "./Assets/Images/Background.png"
+    //    },
+    //    {
+    //        "id": "block",
+    //        "src": "./Assets/Images/Block.png"
+    //    },
+    //    {
+    //        "id":"buttonPlay",
+    //        "src":"./Assets/Images/Button_Play.png"
+    //    },
+    //    {
+    //        "id":"buttonMenu",
+    //        "src":"./Assets/Images/Button_Menu.png"
+    //    }
+    //];
+    //assetManifest = [document.getElementById("assetManifest")];
     // InIt
     function Init() {
         console.log("Initialization Start.");
@@ -53,6 +95,7 @@
         if (currentState != objects.Game.currentScene) {
             Main();
         }
+        currentScene.Update();
         stage.update();
     }
     // Main: Where the Finite State Machine is established

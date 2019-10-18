@@ -8,6 +8,8 @@
 
     <link rel="stylesheet" href="./Content/game.css">
     <link href="https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap" rel="stylesheet" type="text/css">
+    <script id="assetManifest" src="./Content/assetManifest.json"></script>
+    
 </head>
 <body>
     <canvas id="canvas" width="640" height="440"></canvas>
@@ -16,7 +18,7 @@
     <script src="./node_modules/easeljs/lib/easeljs.min.js"></script>
     <script src="./node_modules/soundjs/lib/soundjs.min.js"></script>
     <script src="./node_modules/preloadjs/lib/preloadjs.min.js"></script>
-    <script type="text/javascript" src="./Content/assetManifest.json"></script>
+    
 
     <!-- CONFIG / MATH SCRIPTS -->
     <script src="./Scripts/config/scene.js"></script>
@@ -26,10 +28,12 @@
     <!--    > Core / Abstract Scripts -->
     <script src="./Scripts/objects/game.js"></script>
     <script src="./Scripts/objects/scene.js"></script>
+    <script src="./Scripts/objects/gameobject.js"></script>
     <!--    > Game Scripts -->
     <script src="./Scripts/objects/background.js"></script>
     <script src="./Scripts/objects/label.js"></script>
     <script src="./Scripts/objects/button.js"></script>
+    <script src="./Scripts/objects/player.js"></script>
 
     <!-- MANAGER SCRIPTS -->
     <script src="./Scripts/managers/keyboard.js"></script>
