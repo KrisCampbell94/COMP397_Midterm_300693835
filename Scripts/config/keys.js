@@ -13,6 +13,8 @@ var config;
         Keys.A = 65;
         Keys.S = 83;
         Keys.D = 68;
+        // Space Key
+        Keys.SPACE = 32;
         return Keys;
     }());
     config.Keys = Keys;

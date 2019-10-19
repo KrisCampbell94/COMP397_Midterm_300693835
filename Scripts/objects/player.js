@@ -19,47 +19,65 @@ var objects;
         function Player(assetManager, startPos, bounds) {
             if (startPos === void 0) { startPos = [0, 0]; }
             if (bounds === void 0) { bounds = [0, 0]; }
-            var _this = _super.call(this, assetManager, "bat") || this;
-            _this.startPosition = startPos;
+            var _this = _super.call(this, assetManager, "bat", startPos) || this;
+            _this.echoInitial = 0;
+            _this.echoMax = 30;
             _this.boundaries = bounds;
             _this.Start();
             return _this;
         }
         // Methods
         Player.prototype.Start = function () {
-            console.log("Load Player");
-            this.x = this.startPosition[0];
-            this.y = this.startPosition[1];
+            _super.prototype.Start.call(this);
+            //console.log(this.width, this.height, this.halfWidth, this.halfHeight);
+            this.speedX = 3;
+            this.speedY = 3;
             this.gotHit = false;
         };
         Player.prototype.Update = function () {
-            this.Move();
+            this.Control();
             this.CheckBound();
+            if (this.useEcho) {
+                this.echoInitial++;
+            }
+            if (this.echoInitial > this.echoMax) {
+                console.log("Echo dying out...");
+                this.useEcho = false;
+                this.echoInitial = 0;
+            }
         };
-        Player.prototype.Reset = function () { };
-        Player.prototype.Move = function () {
+        Player.prototype.Reset = function () {
+            if (!this.gotHit) {
+                this.gotHit = true;
+            }
+        };
+        Player.prototype.Control = function () {
             // Keyboard Management
-            if (objects.Game.keyboardManager.moveRight) {
-                this.x += 3;
+            if (objects.Game.keyboardManager.moveRight && !this.useEcho) {
+                this.x += this.speedX;
             }
-            if (objects.Game.keyboardManager.moveLeft) {
-                this.x -= 3;
+            if (objects.Game.keyboardManager.moveLeft && !this.useEcho) {
+                this.x -= this.speedX;
             }
-            if (objects.Game.keyboardManager.moveUp) {
-                this.y -= 3;
+            if (objects.Game.keyboardManager.moveUp && !this.useEcho) {
+                this.y -= this.speedY;
             }
-            if (objects.Game.keyboardManager.moveDown) {
-                this.y += 3;
+            if (objects.Game.keyboardManager.moveDown && !this.useEcho) {
+                this.y += this.speedY;
+            }
+            if (objects.Game.keyboardManager.echoLocate && !this.useEcho) {
+                console.log("ECHO!!");
+                this.useEcho = true;
             }
         };
         Player.prototype.CheckBound = function () {
             // Right Bound
-            if (this.x >= this.boundaries[0] - this.halfWidth) {
-                this.x = this.boundaries[0] - this.halfWidth;
+            if (this.x >= (this.boundaries[0] - this.halfWidth) + 30) {
+                this.x = this.halfWidth - 30;
             }
             // Left Bound
-            if (this.x <= this.halfWidth) {
-                this.x = this.halfWidth;
+            if (this.x <= this.halfWidth - 32) {
+                this.x = (this.boundaries[0] - this.halfWidth) + 32;
             }
             // Bottom Bound
             if (this.y >= this.boundaries[1] - this.halfHeight) {

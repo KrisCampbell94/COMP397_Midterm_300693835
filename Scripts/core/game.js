@@ -9,56 +9,71 @@
     var currentState;
     var keyboardManager;
     // Asset Management Request
-    var request = new Request("./Content/assetManifest.json");
-    fetch(request, {
-        method: 'GET',
-        headers: { 'Content-type': "application/json" },
-        mode: 'cors',
-        cache: 'default'
-    }).then(function (response) {
-        if (response.status === 200) {
-            return response.json();
-        }
-        else {
-            throw new Error('Error on the server.');
-        }
-    })
-        .then(function (data) {
-        assetManifest = data;
-        console.log(assetManifest);
-    }).catch(function (error) {
-        console.error(error);
-    });
-    //assetManifest = [
-    //    {
-    //        "id": "bat",
-    //        "src": "./Assets/Images/Bat.png"
-    //    },
-    //    {
-    //        "id": "regularFloor",
-    //        "src": "./Assets/Images/RegularFloor.png"
-    //    },
-    //    {
-    //        "id": "spike",
-    //        "src": "./Assets/Images/Spike.png"
-    //    },
-    //    {
-    //        "id": "background",
-    //        "src": "./Assets/Images/Background.png"
-    //    },
-    //    {
-    //        "id": "block",
-    //        "src": "./Assets/Images/Block.png"
-    //    },
-    //    {
-    //        "id":"buttonPlay",
-    //        "src":"./Assets/Images/Button_Play.png"
-    //    },
-    //    {
-    //        "id":"buttonMenu",
-    //        "src":"./Assets/Images/Button_Menu.png"
+    //let request = new Request("./Content/assetManifest.json");
+    //fetch(request, {
+    //    method: 'GET',
+    //    headers: { 'Content-type': "application/json" },
+    //    mode: 'cors',
+    //    cache: 'default'
+    //}).then(function (response) {
+    //    if (response.status === 200) {
+    //        return response.json();
+    //    } else {
+    //        throw new Error('Error on the server.');
     //    }
-    //];
+    //})
+    //    .then(function (data) {
+    //        assetManifest = data;
+    //        console.log(assetManifest);
+    //    }).catch(function (error) {
+    //        console.error(error);
+    //    });
+    assetManifest = [
+        {
+            "id": "bat",
+            "src": "./Assets/Images/Bat.png"
+        },
+        {
+            "id": "mateBat",
+            "src": "./Assets/Images/Mate_Bat.png"
+        },
+        {
+            "id": "regularFloor",
+            "src": "./Assets/Images/RegularFloor.png"
+        },
+        {
+            "id": "spike",
+            "src": "./Assets/Images/Spike.png"
+        },
+        {
+            "id": "background",
+            "src": "./Assets/Images/Background.png"
+        },
+        {
+            "id": "block",
+            "src": "./Assets/Images/Block.png"
+        },
+        {
+            "id": "buttonPlay",
+            "src": "./Assets/Images/Button_Play.png"
+        },
+        {
+            "id": "buttonMenu",
+            "src": "./Assets/Images/Button_Menu.png"
+        },
+        {
+            "id": "music_game",
+            "src": "./Assets/Sound/Music_Game.mp3"
+        },
+        {
+            "id": "music_gameOver",
+            "src": "./Assets/Sound/Music_GameOver.mp3"
+        },
+        {
+            "id": "music_menu",
+            "src": "./Assets/Sound/Music_Menu.mp3"
+        }
+    ];
     //assetManifest = [document.getElementById("assetManifest")];
     // InIt
     function Init() {

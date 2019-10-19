@@ -5,6 +5,7 @@ module managers {
         public moveDown: boolean;
         public moveLeft: boolean;
         public moveRight: boolean;
+        public echoLocate: boolean;
 
         public enabled: boolean;
         public pause: boolean;
@@ -40,6 +41,9 @@ module managers {
                     //console.log("Right pressed");
                     this.moveRight = true;
                     break;
+                case config.Keys.SPACE:
+                    this.echoLocate = true;
+                    break;
             }
         }
         public onKeyUp(event: KeyboardEvent): void {
@@ -59,6 +63,9 @@ module managers {
                 case config.Keys.D:
                 case config.Keys.RIGHT_ARROW:
                     this.moveRight = false;
+                    break;
+                case config.Keys.SPACE:
+                    this.echoLocate = false;
                     break;
             }
         }

@@ -4,6 +4,7 @@ module objects {
         protected speedX: number;
         protected speedY: number;
 
+        public position: number[];
         public width: number;
         public height: number;
         public halfWidth: number;
@@ -12,8 +13,9 @@ module objects {
         public isColliding: boolean;
 
         // Constructor
-        constructor(assetManager: createjs.LoadQueue, imageString: string) {
+        constructor(assetManager: createjs.LoadQueue, imageString: string, pos: number[]) {
             super(assetManager.getResult(imageString));
+            this.position = pos;
             this.name = imageString;
             this.Init();
         }
@@ -29,10 +31,14 @@ module objects {
 
             this.isColliding = false;
         }
-        public Start(): void { }
+        public Start(): void { 
+            console.log("Load " + this.name);
+            this.x = this.position[0];
+            this.y = this.position[1];
+        }
         public Update(): void { }
         public Reset(): void { }
-        public Move(): void { }
+        public Control(): void { }
         public CheckBound(): void { }
     }
 }

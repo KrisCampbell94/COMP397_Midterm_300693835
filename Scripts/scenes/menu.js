@@ -24,11 +24,17 @@ var scenes;
         // Methods
         MenuScene.prototype.Start = function () {
             console.log("Load Menu Scene");
+            // Text and Imagery
             this.background = new objects.Background(this.assetManager);
             this.title = new objects.Label("THE BAT CAVE", "32px", "'Press Start 2P'", "#FFFF00", 320, 200, true);
             this.title.createShadow("#6000B0");
             this.copyright = new objects.Label("© Kris Campbell - 300693835", "8px", "'Press Start 2P'", "#FFFFFF", 320, 420, true);
             this.playButton = new objects.Button(this.assetManager, "buttonPlay", 180, 290);
+            // Music
+            //createjs.Sound.stop();
+            this.backgroundMusic = createjs.Sound.play("music_menu");
+            this.backgroundMusic.loop = -1;
+            this.backgroundMusic.volume = 0.4;
             this.Main();
         };
         MenuScene.prototype.Update = function () { };

@@ -16,8 +16,9 @@ var objects;
     var GameObject = /** @class */ (function (_super) {
         __extends(GameObject, _super);
         // Constructor
-        function GameObject(assetManager, imageString) {
+        function GameObject(assetManager, imageString, pos) {
             var _this = _super.call(this, assetManager.getResult(imageString)) || this;
+            _this.position = pos;
             _this.name = imageString;
             _this.Init();
             return _this;
@@ -32,10 +33,14 @@ var objects;
             this.regY = this.halfHeight;
             this.isColliding = false;
         };
-        GameObject.prototype.Start = function () { };
+        GameObject.prototype.Start = function () {
+            console.log("Load " + this.name);
+            this.x = this.position[0];
+            this.y = this.position[1];
+        };
         GameObject.prototype.Update = function () { };
         GameObject.prototype.Reset = function () { };
-        GameObject.prototype.Move = function () { };
+        GameObject.prototype.Control = function () { };
         GameObject.prototype.CheckBound = function () { };
         return GameObject;
     }(createjs.Bitmap));
