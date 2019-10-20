@@ -29,7 +29,6 @@ var objects;
         // Methods
         Player.prototype.Start = function () {
             _super.prototype.Start.call(this);
-            //console.log(this.width, this.height, this.halfWidth, this.halfHeight);
             this.speedX = 3;
             this.speedY = 3;
             this.gotHit = false;
@@ -37,36 +36,36 @@ var objects;
         Player.prototype.Update = function () {
             this.Control();
             this.CheckBound();
-            if (this.useEcho) {
-                this.echoInitial++;
-            }
-            if (this.echoInitial > this.echoMax) {
-                console.log("Echo dying out...");
-                this.useEcho = false;
-                this.echoInitial = 0;
-            }
+            this.CheckEcho();
         };
         Player.prototype.Reset = function () {
+            // The player gets hit, thus causing a reset
             if (!this.gotHit) {
                 this.gotHit = true;
             }
         };
         Player.prototype.Control = function () {
             // Keyboard Management
+            //      MOVEMENT
+            //          Move Right
             if (objects.Game.keyboardManager.moveRight && !this.useEcho) {
                 this.x += this.speedX;
             }
+            //          Move Left
             if (objects.Game.keyboardManager.moveLeft && !this.useEcho) {
                 this.x -= this.speedX;
             }
+            //          Move Up
             if (objects.Game.keyboardManager.moveUp && !this.useEcho) {
                 this.y -= this.speedY;
             }
+            //          Move Down
             if (objects.Game.keyboardManager.moveDown && !this.useEcho) {
                 this.y += this.speedY;
             }
+            //      SPACE BUTTON
             if (objects.Game.keyboardManager.echoLocate && !this.useEcho) {
-                console.log("ECHO!!");
+                // This deactivates movement
                 this.useEcho = true;
             }
         };
@@ -86,6 +85,17 @@ var objects;
             // Top Bound
             if (this.y <= this.halfHeight) {
                 this.y = this.halfHeight;
+            }
+        };
+        Player.prototype.CheckEcho = function () {
+            // Controls the echo timer and checks if the player uses Echo Location
+            if (this.useEcho) {
+                this.echoInitial++;
+            }
+            if (this.echoInitial > this.echoMax) {
+                console.log("Echo dying out...");
+                this.useEcho = false;
+                this.echoInitial = 0;
             }
         };
         return Player;

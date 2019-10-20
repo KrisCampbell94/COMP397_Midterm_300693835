@@ -7,20 +7,13 @@ module objects {
             super(assetManager, "mateBat", pos);
             this.Start();
         }
-
         // Methods
         public Start(): void {
             super.Start();
             this.complete = false;
-            //console.log(this.width, this.height, this.halfWidth, this.halfHeight);
-        }
-        public Update(): void {
-            this.CheckBound();
-        }
-        public CheckBound(): void {
-
         }
         public Reset(): void {
+            // If true, then the game is over, the player wins
             if (!this.complete) {
                 this.complete = true;
             }

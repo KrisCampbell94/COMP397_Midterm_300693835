@@ -2,13 +2,12 @@ module scenes {
     export class GameOverScene extends objects.Scene {
         // Variables
         private background: objects.Background;
+        private backgroundMusic: createjs.AbstractSoundInstance;
         private gameOver: objects.Label;
         private menuButton: objects.Button;
 
         private blueBat: createjs.Bitmap;
         private redBat: createjs.Bitmap;
-
-        private backgroundMusic: createjs.AbstractSoundInstance;
 
         // Constructor
         constructor(assetManager: createjs.LoadQueue) {
@@ -19,12 +18,15 @@ module scenes {
         // Methods
         public Start(): void {
             console.log("Load Game Over Scene");
+            // Create background
             this.background = new objects.Background(this.assetManager);
+            // Create GameOver/Congratulations label
             this.gameOver = new objects.Label(
                 "CONGRATULATIONS!", "32px", "'Press Start 2P'", "#FF6F6F", 320, 200, true
             );
             this.gameOver.createShadow("#777777");
 
+            // Create both bats
             this.blueBat = new createjs.Bitmap(this.assetManager.getResult("bat"));
             this.blueBat.x = 287;
             this.blueBat.y = 240;
@@ -32,8 +34,10 @@ module scenes {
             this.redBat.x = 317;
             this.redBat.y = 240;
 
+            // Create menu button
             this.menuButton = new objects.Button(this.assetManager, "buttonMenu", 180, 290);
 
+            // Play proper music
             createjs.Sound.stop();
             this.backgroundMusic = createjs.Sound.play("music_gameOver");
             this.backgroundMusic.loop = -1;
@@ -50,6 +54,7 @@ module scenes {
             this.addChild(this.redBat);
             this.addChild(this.menuButton);
 
+            // Use event handler for menu button
             this.menuButton.on("click", this.menuButtonClick);
         }
 

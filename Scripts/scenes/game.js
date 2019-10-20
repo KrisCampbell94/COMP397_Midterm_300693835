@@ -48,16 +48,16 @@ var scenes;
             // Blocks need to be 32px apart and moved 16px right and down
             this.blocks = new Array();
             this.spikes = new Array();
+            // Build the tiles to create the map maze
             for (var col = 0; col < Object.keys(this.tileBuild).length; col++) {
                 // Column == Y Axis
                 var y = (col * 32) + 16;
                 for (var row = 0; row < this.tileBuild[col + 1].length; row++) {
+                    // Row == X Axis
                     var x = (row * 32) + 16;
                     switch (this.tileBuild[col + 1][row]) {
                         case 1:
-                            //console.log("Build Tile @",x,y);
                             this.blocks[this.blockNum] = new objects.Block(this.assetManager, [x, y]);
-                            //console.log(this.blockNum);
                             this.blockNum += 1;
                             break;
                         case 2:
@@ -73,6 +73,7 @@ var scenes;
                     }
                 }
             }
+            // Starts the background music
             createjs.Sound.stop();
             this.backgroundMusic = createjs.Sound.play("music_game");
             this.backgroundMusic.loop = -1;
@@ -83,7 +84,7 @@ var scenes;
             var _this = this;
             // PLAYER UPDATES
             this.player.Update();
-            // Gets hit from the spike
+            // Player gets hit from spikes, reset everything
             if (this.player.gotHit) {
                 this.blocks.forEach(function (block) {
                     block.visible = true;
@@ -96,10 +97,12 @@ var scenes;
                 this.player.y = this.startPosition[1];
                 this.player.gotHit = false;
             }
+            // Checks the collision for the player and the different blocks
             this.blocks.forEach(function (block) {
                 managers.Collision.CheckBounds(_this.player, block);
             });
             managers.Collision.CheckBounds(this.player, this.blockButton);
+            // If the switch is on for the block button, then all blocks and spikes go invisible
             if (this.blockButton.switch && !this.player.useEcho) {
                 this.blocks.forEach(function (block) {
                     block.visible = false;
@@ -108,6 +111,7 @@ var scenes;
                     spike.visible = false;
                 });
             }
+            // If player uses Echo Location, then let the blocks be visible for a short amount of time
             else if (this.blockButton.switch && this.player.useEcho) {
                 this.blocks.forEach(function (block) {
                     block.visible = true;
@@ -120,14 +124,15 @@ var scenes;
                 managers.Collision.CheckBounds(_this.player, spike);
             });
             // MATE UPDATES
-            this.mate.Update();
             managers.Collision.CheckBounds(this.player, this.mate);
+            // If player gets in contact with mate, then the player wins the game. 
             if (this.mate.complete) {
                 objects.Game.currentScene = config.Scene.GAMEOVER;
             }
         };
         GameScene.prototype.Main = function () {
             var _this = this;
+            // Add all the objects to the game in a specific order to prevent incorrect overlaps
             this.addChild(this.background);
             this.blocks.forEach(function (block) {
                 _this.addChild(block);

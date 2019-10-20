@@ -15,7 +15,6 @@ var objects;
 (function (objects) {
     var Block = /** @class */ (function (_super) {
         __extends(Block, _super);
-        // Variables
         // Constructor
         function Block(assetManager, pos) {
             if (pos === void 0) { pos = [0, 0]; }
@@ -27,12 +26,6 @@ var objects;
         // Methods
         Block.prototype.Start = function () {
             _super.prototype.Start.call(this);
-            //console.log(this.width, this.height, this.halfWidth, this.halfHeight);
-        };
-        Block.prototype.Update = function () {
-            this.CheckBound();
-        };
-        Block.prototype.CheckBound = function () {
         };
         return Block;
     }(objects.GameObject));

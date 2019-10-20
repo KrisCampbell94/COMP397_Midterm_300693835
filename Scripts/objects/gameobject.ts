@@ -3,7 +3,7 @@ module objects {
         // Variables
         protected speedX: number;
         protected speedY: number;
-
+        //      Holds in the x value [0] and the y value [1]
         public position: number[];
         public width: number;
         public height: number;
@@ -19,6 +19,7 @@ module objects {
             this.name = imageString;
             this.Init();
         }
+
         // Methods
         private Init(): void {
             this.width = this.getBounds().width;

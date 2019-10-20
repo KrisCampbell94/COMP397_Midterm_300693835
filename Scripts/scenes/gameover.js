@@ -24,16 +24,21 @@ var scenes;
         // Methods
         GameOverScene.prototype.Start = function () {
             console.log("Load Game Over Scene");
+            // Create background
             this.background = new objects.Background(this.assetManager);
+            // Create GameOver/Congratulations label
             this.gameOver = new objects.Label("CONGRATULATIONS!", "32px", "'Press Start 2P'", "#FF6F6F", 320, 200, true);
             this.gameOver.createShadow("#777777");
+            // Create both bats
             this.blueBat = new createjs.Bitmap(this.assetManager.getResult("bat"));
             this.blueBat.x = 287;
             this.blueBat.y = 240;
             this.redBat = new createjs.Bitmap(this.assetManager.getResult("mateBat"));
             this.redBat.x = 317;
             this.redBat.y = 240;
+            // Create menu button
             this.menuButton = new objects.Button(this.assetManager, "buttonMenu", 180, 290);
+            // Play proper music
             createjs.Sound.stop();
             this.backgroundMusic = createjs.Sound.play("music_gameOver");
             this.backgroundMusic.loop = -1;
@@ -48,6 +53,7 @@ var scenes;
             this.addChild(this.blueBat);
             this.addChild(this.redBat);
             this.addChild(this.menuButton);
+            // Use event handler for menu button
             this.menuButton.on("click", this.menuButtonClick);
         };
         GameOverScene.prototype.menuButtonClick = function () {

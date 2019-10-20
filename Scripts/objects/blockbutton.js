@@ -27,15 +27,10 @@ var objects;
             _super.prototype.Start.call(this);
             this.switch = false;
         };
-        BlockButton.prototype.Update = function () {
-            this.CheckBound();
-        };
-        BlockButton.prototype.CheckBound = function () {
-        };
         BlockButton.prototype.Reset = function () {
+            // Turns on the switch for the button
             if (!this.switch) {
                 this.switch = true;
-                console.log("SWITCH ON!");
             }
         };
         return BlockButton;

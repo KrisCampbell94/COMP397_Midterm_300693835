@@ -15,7 +15,6 @@ var objects;
 (function (objects) {
     var Label = /** @class */ (function (_super) {
         __extends(Label, _super);
-        // Variables
         // Constructor
         function Label(text, fontSize, fontFamily, fontColor, x, y, isCentered) {
             if (x === void 0) { x = 0; }

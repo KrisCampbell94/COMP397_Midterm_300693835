@@ -15,7 +15,6 @@ var objects;
 (function (objects) {
     var Button = /** @class */ (function (_super) {
         __extends(Button, _super);
-        // Variables
         // Constructor
         function Button(assetManager, imageString, x, y) {
             if (x === void 0) { x = 0; }

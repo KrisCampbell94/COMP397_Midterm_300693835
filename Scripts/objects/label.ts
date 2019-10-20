@@ -1,18 +1,15 @@
 module objects{
     export class Label extends createjs.Text{
-        // Variables
-        
         // Constructor
-        constructor(
-            text: string, fontSize: string, fontFamily: string, fontColor: string, x: number = 0, y: number = 0, isCentered: boolean = false
-        ) {
+        constructor(text: string, fontSize: string, fontFamily: string, 
+            fontColor: string, x: number = 0, y: number = 0, 
+            isCentered: boolean = false) {
             super(text,fontSize+ " "+fontFamily,fontColor);
             this.x = x;
             this.y = y;
             if(isCentered){
                 this.recenterText();
             }
-            
         }
         // Methods
         public recenterText(): void {

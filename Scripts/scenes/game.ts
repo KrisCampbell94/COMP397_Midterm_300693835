@@ -1,16 +1,15 @@
 module scenes {
     export class GameScene extends objects.Scene {
         // Variables
-        private background: objects.Background;
+        private background: objects.Background; 
+        private backgroundMusic: createjs.AbstractSoundInstance;
         private player: objects.Player;
         private startPosition: number[];
         private mate: objects.Mate;
 
         private blocks: objects.Block[];
         private blockNum: number = 0;
-
         private blockButton: objects.BlockButton;
-
         private spikes: objects.Spike[];
         private spikeNum: number = 0;
 
@@ -31,9 +30,6 @@ module scenes {
             14: [0, 0, 1, 0, 3, 3, 3, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
         };
 
-        private backgroundMusic: createjs.AbstractSoundInstance;
-
-
         // Constructor
         constructor(assetManager: createjs.LoadQueue) {
             super(assetManager);
@@ -51,16 +47,16 @@ module scenes {
             this.blocks = new Array<objects.Block>();
             this.spikes = new Array<objects.Spike>();
 
+            // Build the tiles to create the map maze
             for (let col = 0; col < Object.keys(this.tileBuild).length; col++) {
                 // Column == Y Axis
                 let y = (col * 32) + 16;
                 for (let row = 0; row < this.tileBuild[col + 1].length; row++) {
+                    // Row == X Axis
                     let x = (row * 32) + 16;
                     switch (this.tileBuild[col + 1][row]) {
                         case 1:
-                            //console.log("Build Tile @",x,y);
                             this.blocks[this.blockNum] = new objects.Block(this.assetManager, [x, y]);
-                            //console.log(this.blockNum);
                             this.blockNum += 1;
                             break;
                         case 2:
@@ -76,7 +72,7 @@ module scenes {
                     }
                 }
             }
-
+            // Starts the background music
             createjs.Sound.stop();
             this.backgroundMusic = createjs.Sound.play("music_game");
             this.backgroundMusic.loop = -1;
@@ -88,7 +84,7 @@ module scenes {
             // PLAYER UPDATES
             this.player.Update();
 
-            // Gets hit from the spike
+            // Player gets hit from spikes, reset everything
             if (this.player.gotHit) {
                 this.blocks.forEach(block => {
                     block.visible = true;
@@ -103,11 +99,13 @@ module scenes {
 
                 this.player.gotHit = false;
             }
+            // Checks the collision for the player and the different blocks
             this.blocks.forEach(block => {
                 managers.Collision.CheckBounds(this.player, block);
             });
 
             managers.Collision.CheckBounds(this.player,this.blockButton);
+            // If the switch is on for the block button, then all blocks and spikes go invisible
             if (this.blockButton.switch && !this.player.useEcho) {
                 this.blocks.forEach(block => {
                     block.visible = false;
@@ -116,6 +114,7 @@ module scenes {
                     spike.visible = false;
                 });
             } 
+            // If player uses Echo Location, then let the blocks be visible for a short amount of time
             else if(this.blockButton.switch && this.player.useEcho){
                 this.blocks.forEach(block => {
                     block.visible = true;
@@ -129,13 +128,14 @@ module scenes {
                 managers.Collision.CheckBounds(this.player, spike);
             });
             // MATE UPDATES
-            this.mate.Update();
             managers.Collision.CheckBounds(this.player, this.mate);
+            // If player gets in contact with mate, then the player wins the game. 
             if (this.mate.complete) {
                 objects.Game.currentScene = config.Scene.GAMEOVER;
             }
         }
         public Main(): void {
+            // Add all the objects to the game in a specific order to prevent incorrect overlaps
             this.addChild(this.background);
             this.blocks.forEach(block => {
                 this.addChild(block);

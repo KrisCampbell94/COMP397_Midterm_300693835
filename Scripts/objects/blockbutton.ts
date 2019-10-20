@@ -12,16 +12,10 @@ module objects{
             super.Start();
             this.switch = false;
         }
-        public Update():void{
-            this.CheckBound();
-        }
-        public CheckBound():void {
-            
-        }
         public Reset():void{
+            // Turns on the switch for the button
             if(!this.switch){
                 this.switch = true;
-                console.log("SWITCH ON!");
             }   
         }
     }

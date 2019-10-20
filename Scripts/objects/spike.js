@@ -15,7 +15,6 @@ var objects;
 (function (objects) {
     var Spike = /** @class */ (function (_super) {
         __extends(Spike, _super);
-        // Variables
         // Constructor
         function Spike(assetManager, pos) {
             if (pos === void 0) { pos = [0, 0]; }
@@ -26,12 +25,6 @@ var objects;
         // Methods
         Spike.prototype.Start = function () {
             _super.prototype.Start.call(this);
-            //console.log(this.width, this.height, this.halfWidth, this.halfHeight);
-        };
-        Spike.prototype.Update = function () {
-            this.CheckBound();
-        };
-        Spike.prototype.CheckBound = function () {
         };
         return Spike;
     }(objects.GameObject));

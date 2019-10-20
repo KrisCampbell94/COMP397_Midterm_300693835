@@ -27,7 +27,6 @@ module scenes {
             this.playButton = new objects.Button(this.assetManager,"buttonPlay",180,290);
 
             // Music
-            //createjs.Sound.stop();
             this.backgroundMusic = createjs.Sound.play("music_menu");
             this.backgroundMusic.loop = -1;
             this.backgroundMusic.volume = 0.4;
@@ -42,7 +41,7 @@ module scenes {
             this.addChild(this.playButton);
             this.addChild(this.copyright);
 
-            // Event
+            // Use event handler for play button
             this.playButton.on("click",this.playButtonClick);
         }
 

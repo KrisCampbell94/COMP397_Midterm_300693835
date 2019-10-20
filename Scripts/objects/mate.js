@@ -26,14 +26,9 @@ var objects;
         Mate.prototype.Start = function () {
             _super.prototype.Start.call(this);
             this.complete = false;
-            //console.log(this.width, this.height, this.halfWidth, this.halfHeight);
-        };
-        Mate.prototype.Update = function () {
-            this.CheckBound();
-        };
-        Mate.prototype.CheckBound = function () {
         };
         Mate.prototype.Reset = function () {
+            // If true, then the game is over, the player wins
             if (!this.complete) {
                 this.complete = true;
             }
