@@ -24,7 +24,7 @@
     "@types/node": "^12.7.12",
     "createjs": "^1.0.1",
     "easeljs": "^1.0.2",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "preloadjs": "^1.0.1",
     "soundjs": "^1.0.1"
   }
